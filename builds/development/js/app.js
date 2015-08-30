@@ -1,21 +1,20 @@
 angular.module('ui.bootstrap.demo', ['ngAnimate', 'ui.bootstrap']);
-angular.module('ui.bootstrap.demo').controller('AlertDemoCtrl', AlertDemoCtrl);
+angular.module('ui.bootstrap.demo').controller('CarouselDemoCtrl', CarouselDemoCtrl);
 
-function AlertDemoCtrl() {
+function CarouselDemoCtrl() {
   var vm = this;
-
-  vm.addAlert = addAlert;
-  vm.closeAlert = closeAlert;
-  vm.alerts = [
-    { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-    { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
-  ];
-
-  function addAlert() {
-    vm.alerts.push({msg: 'Another alert!'});
-  }
-
-  function closeAlert(index) {
-    vm.alerts.splice(index, 1);
+  vm.myInterval = 5000;
+  vm.noWrapSlides = false;
+  var slides = vm.slides = [];
+  vm.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    slides.push({
+      image: '//placekitten.com/' + newWidth + '/300',
+      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+      ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+    });
+  };
+  for (var i=0; i<4; i++) {
+    vm.addSlide();
   }
 }
