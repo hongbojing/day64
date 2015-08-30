@@ -9,9 +9,33 @@
   </head>
   <body>
     <h1>Test angular bootstrap ui and re-write in John Papa style</h1>
-    <div ng-controller="AlertDemoCtrl as alertCtrl">
-      <alert ng-repeat="alert in alertCtrl.alerts" type="{{alert.type}}" close="alertCtrl.closeAlert($index)">{{alert.msg}}</alert>
-      <button type="button" class="btn btn-default" ng-click="alertCtrl.addAlert()">Add Alert</button>
+    <div ng-controller="CarouselDemoCtrl as carCtrl">
+      <div style="height: 305px">
+        <carousel interval="carCtrl.myInterval" no-wrap="carCtrl.noWrapSlides">
+          <slide ng-repeat="slide in carCtrl.slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+              <h4>Slide {{$index}}</h4>
+              <p>{{slide.text}}</p>
+            </div>
+          </slide>
+        </carousel>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-info" ng-click="carCtrl.addSlide()">Add Slide</button>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="carCtrl.noWrapSlides">
+              Disable Slide Looping
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          Interval, in milliseconds: <input type="number" class="form-control" ng-model="carCtrl.myInterval">
+          <br />Enter a negative number or 0 to stop the interval.
+        </div>
+      </div>
     </div>
   </body>
 </html>
